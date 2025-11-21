@@ -22,7 +22,7 @@ This host is for sending payloads on elfldr by john-tornblom, not for jailbreaki
 
 ## Compatibility
 
-This host works up to firmware 5.50. Higher firmwares have not been tested.
+This host works up to firmware 5.50. Higher firmwares doesnt work!.
 
 ## Thanks
 
