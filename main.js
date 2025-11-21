@@ -49,7 +49,7 @@ if (!navigator.userAgent.includes('PlayStation 5')) {
     throw new Error("");
 }
 
-const supportedFirmwares = ["1.00", "1.01", "1.02", "1.05", "1.10", "1.11", "1.12", "1.13", "1.14", "2.00", "2.20", "2.25", "2.26", "2.30", "2.50", "2.70", "3.00", "3.10", "3.20", "3.21", "4.00", "4.02", "4.03", "4.50", "4.51", "5.00", "5.02", "5.10", "5.50", "6.00", "6.02", "6.50", "7.01", "7.20", "7.40", "7.61", "8.00", "8.20", "8.40", "8.60", "9.00", "9.20", "9.40", "9.60", "10.00", "10.01"];
+const supportedFirmwares = ["1.00", "1.01", "1.02", "1.05", "1.10", "1.11", "1.12", "1.13", "1.14", "2.00", "2.20", "2.25", "2.26", "2.30", "2.50", "2.70", "3.00", "3.10", "3.20", "3.21", "4.00", "4.02", "4.03", "4.50", "4.51", "5.00", "5.02", "5.10", "5.50"];
 const fw_idx = navigator.userAgent.indexOf('PlayStation; PlayStation 5/') + 27;
 // @ts-ignore
 window.fw_str = navigator.userAgent.substring(fw_idx, fw_idx + 4);
@@ -456,28 +456,6 @@ async function main(userlandRW, wkOnly = false) {
         ip = { ip: "", name: "Offline" };
     }
 
-    // async function probe_sb_elfldr() {
-    //     let fd = (await chain.syscall(SYS_SOCKET, AF_INET, SOCK_STREAM, 0)).low << 0;
-    //     if (fd <= 0) {
-    //         return false;
-    //     }
-
-    //     let addr = p.malloc(0x10);
-    //     // let localhost = aton("127.0.0.1");
-    //     // alert("localhost: " + localhost.toString(16));
-    //     build_addr(addr, AF_INET, htons(9021), 0x0100007F);
-    //     let connect_res = (await chain.syscall(SYS_CONNECT, fd, addr, 0x10)).low << 0;
-    //     if (connect_res < 0) {
-    //         await chain.syscall(SYS_CLOSE, fd);
-    //         return false;
-    //     }
-
-    //     // send something otherwise elfldr will get stuck
-    //     let write_res = (await chain.syscall(SYS_WRITE, fd, addr, 0x1)).low << 0;
-
-    //     await chain.syscall(SYS_CLOSE, fd);
-    //     return true;
-    // }
 
     async function probe_sb_elfldr() {
         // if the bind fails, elfldr is running so return true
