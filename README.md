@@ -1,10 +1,10 @@
 # PS5 Web Payload
 
-A webkit-based kernel exploit and jailbreak for PS5.
+A webkit-based Payload sender for PS5.
 
 ## Description
 
-This repository contains a web-based payload for exploiting and jailbreaking the PlayStation 5 console using WebKit vulnerabilities. It provides tools for running custom payloads on supported firmware versions.
+This host is for sending payloads on elfldr by john-tornblom, not for jailbreaking (Only works on PS5.
 
 ## Usage Guide
 
