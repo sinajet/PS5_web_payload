@@ -19,33 +19,33 @@ async function run(wkonly = false, animate = true) {
     // not setting it in the catch since we want to retry both on a handled error and on a browser crash
     sessionStorage.setItem(SESSIONSTORE_ON_LOAD_AUTORUN_KEY, wkonly ? "wkonly" : "kernel");
 
-    // try {
-    //     if (!animate) {
-    //         // hack but waiting a bit seems to help
-    //         // this only gets hit when auto-running on page load
-    //         await new Promise((resolve) => setTimeout(resolve, 100));
-    //     }
-    //     await run_psfree(fw_str);
+    try {
+        if (!animate) {
+            // hack but waiting a bit seems to help
+            // this only gets hit when auto-running on page load
+            await new Promise((resolve) => setTimeout(resolve, 100));
+        }
+        await run_psfree(fw_str);
 
-    // } catch (error) {
-    //     log("Webkit exploit failed: " + error, LogLevel.ERROR);
-    //     await main(window.p, wkonly);
-    //     log("Retrying in 2 seconds...", LogLevel.LOG);
-    //     await new Promise((resolve) => setTimeout(resolve, 2000));
-    //     window.location.reload();
-    //     return; // this is necessary
-    // }
-    main(window.p, wkonly);
-    // try {
-    //     await main(window.p, wkonly); // if all goes well, this should block forever
-    // } catch (error) {
-    //     log("Kernel exploit/main() failed: " + error, LogLevel.ERROR);
-    //     // p.write8(new int64(0,0), 0); // crash
-    // }
+    } catch (error) {
+        log("Webkit exploit failed: " + error, LogLevel.ERROR);
 
-    // log("Retrying in 4 seconds...", LogLevel.LOG);
-    // await new Promise((resolve) => setTimeout(resolve, 4000));
-    // window.location.reload();
+        log("Retrying in 2 seconds...", LogLevel.LOG);
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        window.location.reload();
+        return; // this is necessary
+    }
+
+    try {
+        await main(window.p, wkonly); // if all goes well, this should block forever
+    } catch (error) {
+        log("Kernel exploit/main() failed: " + error, LogLevel.ERROR);
+        // p.write8(new int64(0,0), 0); // crash
+    }
+
+    log("Retrying in 4 seconds...", LogLevel.LOG);
+    await new Promise((resolve) => setTimeout(resolve, 4000));
+    window.location.reload();
 }
 
 async function switchPage(id, animate = true) {
